@@ -1,4 +1,3 @@
-.vscode/c_cpp_properties.json
-.vscode/launch.json
-.vscode/settings.json
-2-c/1-lab/a.out
+.vscode/*
+material/*
+2-cpp/.vscode/*
