@@ -2,7 +2,7 @@
 
 [[ -f ~/.bashrc ]] && {
   cat<<-EOF >> ~/.bashrc
-	export PATH=$PATH:$HOME/.dotnet/tools
+	export HELLO=$HOSTNAME
 	export LOCAL="$(whoami)"
 EOF
 }
