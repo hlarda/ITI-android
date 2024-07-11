@@ -3,7 +3,7 @@
 ## Question 2
 
 Move the binary file output to the directory `/usr/local/bin` with `sudo`
-permissions. Afterward, attempt to execute the binary froma ny working
+permissions. Afterward, attempt to execute the binary from any working
 directory and explain the outcome. Provide a detailed explanation supported
 by evidence as to why the binary can be executed from any location.
 
@@ -21,7 +21,7 @@ which is in `$PATH` by default.
 
 ```console
 $ echo $PATH
-/usr/bin:/usr/sbin:/usr/local/bin:/run/wrappers/bin:/home/hala/.nix-profile/bin:/nix/profile/bin:/home/hala/.local/state/nix/profile/bin:/etc/profiles/per-user/hala/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin
+/home/hala/.dotnet/tools:/home/hala/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/home/hala/.dotnet/tools:/home/hala/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/home/hala/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/hala/.dotnet/tools
 ```
 
 # Na2na2a
@@ -29,11 +29,17 @@ $ echo $PATH
 ## 1. List all available shells on your system
 
 ```console
-$ cat /etc/shells`
-/run/current-system/sw/bin/bash
-/run/current-system/sw/bin/sh
-/bin/bash
+$cat /etc/shells
+# /etc/shells: valid login shells
 /bin/sh
+/bin/bash
+/usr/bin/bash
+/bin/rbash
+/usr/bin/rbash
+/usr/bin/sh
+/bin/dash
+/usr/bin/dash
+
 ```
 
 ## 2. List the environment variables in your current shell
@@ -44,7 +50,7 @@ command: `env` or `printenv`
 
 ```console
 $ echo $SHELL
-/run/current-system/sw/bin/bash
+/bin/bash
 ```
 
 ## 4. Execute the command `echo \` then press enter. What is the purpose of `\`?
