@@ -1,5 +1,23 @@
 # TFTP
 
+## Table of Contents
+
+- [TFTP](#tftp)
+  - [Table of Contents](#table-of-contents)
+  - [Best Image Flashing Methods](#best-image-flashing-methods)
+  - [2.TFTP](#2tftp)
+    - [Why tftp?](#why-tftp)
+  - [A.Linux Side](#alinux-side)
+    - [1.Download tftp on the server](#1download-tftp-on-the-server)
+    - [2.Configure tftp server](#2configure-tftp-server)
+    - [3.Run tftp demon](#3run-tftp-demon)
+      - [initd script for tftp demon](#initd-script-for-tftp-demon)
+    - [4.Change the ownership of the tftp directory](#4change-the-ownership-of-the-tftp-directory)
+  - [B. Uboot Side](#b-uboot-side)
+    - [1. Setup network between the server and the target](#1-setup-network-between-the-server-and-the-target)
+    - [2.Set the serverip address](#2set-the-serverip-address)
+  - [IPs in RPI](#ips-in-rpi)
+
 ## Best Image Flashing Methods
 
 1. Directly through device access using `fatload`.
