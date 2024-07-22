@@ -1,0 +1,1 @@
+6-EmbeddedLinux/tasks/1-extlinux-conf/sd.img filter=lfs diff=lfs merge=lfs -text
