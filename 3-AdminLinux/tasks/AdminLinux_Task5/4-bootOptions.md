@@ -11,6 +11,7 @@
   - [4. Copy the boot script to the boot partition](#4-copy-the-boot-script-to-the-boot-partition)
   - [5. Edit Bootcmd to run the script](#5-edit-bootcmd-to-run-the-script)
   - [6. Test running in more than one scenario](#6-test-running-in-more-than-one-scenario)
+    - [2.Set serverip with Host IP](#2set-serverip-with-host-ip)
 
 ## STEPS
 
@@ -50,8 +51,13 @@ Prepare the environment by installing the necessary tools and dependencies. Make
             setenv ipaddr 192.168.1.20
             echo "Checking TFTP..."
             if ping 192.168.1.10; then
-                echo "Loaded zImage and dtb via TFTP"
-                setenv success 1
+                echo "TFTP server reachable"
+                if tftp ${fdt_addr_r} vexpress-v2p-ca9.dtb && tftp ${kernel_addr_r} zImage ; then
+                    echo "Loaded zImage and dtb from TFTP"
+                    setenv success 1
+                else
+                    echo "Failed to load from TFTP"
+                fi
             else
                 echo "TFTP server not reachable"
             fi
@@ -130,17 +136,61 @@ reset
 
 3. With the network interface
 
-    ```bash
-    qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel ~/u-boot/u-boot -sd ~/sd.img -net nic -net tap,script=/home/hala/windows-b/ITI-android/3-AdminLinux/tap.sh
-    ```
+### 1.Add the files to be loaded in tftp server directory
 
-    ```uboot
-    Checking TFTP...
-    smc911x: detected LAN9118 controller
-    smc911x: phy initialized
-    smc911x: MAC 52:54:00:12:34:56
-    Using ethernet@3,02000000 device
-    smc911x: MAC 52:54:00:12:34:56
-    host 192.168.1.10 is alive
-    Loaded zImage and dtb via TFTP
-    ```
+```bash
+sudo cp ~/Documents/vexpress-v2p-ca9.dtb /srv/tftp/
+sudo cp ~/Documents/zImage /srv/tftp/
+```
+
+### 2.Set serverip with Host IP
+
+```uboot
+setenv serverip 192.168.1.10
+saveenv 
+reset
+```
+
+```bash
+qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel ~/u-boot/u-boot -sd ~/sd.img -net nic -net tap,script=/home/hala/windows-b/ITI-android/3-AdminLinux/tap.sh
+```
+
+```uboot
+Checking MMC...
+Failed to load 'vexpress-v2p-ca9.dtb'
+Failed to load from MMC
+----------------------------------------------------------------------
+Checking TFTP...
+smc911x: detected LAN9118 controller
+smc911x: phy initialized
+smc911x: MAC 52:54:00:12:34:56
+Using ethernet@3,02000000 device
+smc911x: MAC 52:54:00:12:34:56
+host 192.168.1.10 is alive
+TFTP server reachable
+smc911x: detected LAN9118 controller
+smc911x: phy initialized
+smc911x: MAC 52:54:00:12:34:56
+Using ethernet@3,02000000 device
+TFTP from server 192.168.1.10; our IP address is 192.168.1.20
+Filename 'vexpress-v2p-ca9.dtb'.
+Load address: 0x60000000
+Loading: #
+         19.5 KiB/s
+done
+Bytes transferred = 20 (14 hex)
+smc911x: MAC 52:54:00:12:34:56
+smc911x: detected LAN9118 controller
+smc911x: phy initialized
+smc911x: MAC 52:54:00:12:34:56
+Using ethernet@3,02000000 device
+TFTP from server 192.168.1.10; our IP address is 192.168.1.20
+Filename 'zImage'.
+Load address: 0x60100000
+Loading: #
+         5.9 KiB/s
+done
+Bytes transferred = 6 (6 hex)
+smc911x: MAC 52:54:00:12:34:56
+Loaded zImage and dtb from TFTP
+```
