@@ -2,14 +2,17 @@
 
 ## Table of Contents
 
--[How to tansfer root filesystem to the target](#how-to-tansfer-root-filesystem-to-the-target)
+- [Root filesystem](#root-filesystem)
+  - [Table of Contents](#table-of-contents)
+  - [How to tansfer root filesystem to the target](#how-to-tansfer-root-filesystem-to-the-target)
     - [Initramfs](#initramfs)
-        - [How to load and use a standalone initramfs](#how-to-load-and-use-a-standalone-initramfs)
+      - [How to load and use a standalone initramfs](#how-to-load-and-use-a-standalone-initramfs)
+      - [1.Prerequisites](#1prerequisites)
         - [SD card structure](#sd-card-structure)
-    - [Boot the kernel with the initramfs](#2boot-the-kernel-with-the-initramfs)
-        - [Run QEMU](#21run-qemu)
-        - [Edit bootcmd in U-Boot to load and boot nessasary files](#22edit-bootcmd-in-u-boot-to-load-and-boot-nessasary-files)
-    - [Final Result](#3final-result)
+      - [2.Boot the kernel with the initramfs](#2boot-the-kernel-with-the-initramfs)
+        - [2.1.Run QEMU](#21run-qemu)
+        - [2.2.Edit bootcmd in U-Boot to load and boot nessasary files](#22edit-bootcmd-in-u-boot-to-load-and-boot-nessasary-files)
+      - [3.Final Result](#3final-result)
 
 ## How to tansfer root filesystem to the target
 
