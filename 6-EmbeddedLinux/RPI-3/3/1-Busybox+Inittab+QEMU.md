@@ -58,10 +58,10 @@ rsync -avz busybox/_install/ ~/SD/rootfs/
 ### 6.Create missing directories
 
 ```bash
-mkdir -p ./dev /etc
+mkdir boot dev etc home mnt proc root srv sys
 ```
 
-### 7.Create inittab script
+### 7.Create `inittab` script in `etc` directory
 
 **Syntax:**
 
@@ -74,6 +74,24 @@ mkdir -p ./dev /etc
 ttyAMA0::askfirst:-/bin/sh
 # Stuff to do when restarting the init process
 ::restart:/sbin/init
+```
+
+### 8.Create `rcS` script in `etc/init.d` directory
+
+```bash
+#!/bin/sh
+# mount a filesystem of type `proc` to /proc
+mount -t proc nodev /proc
+# mount a filesystem of type `sysfs` to /sys
+mount -t sysfs nodev /sys
+# mount devtmpfs if you forget to configure it in Kernel menuconfig
+#mount -t devtmpfs devtempfs /dev
+```
+
+Make it executable
+
+```bash
+sudo chmod +x etc/init.d/rcS
 ```
 
 ## B. Run QEMU
