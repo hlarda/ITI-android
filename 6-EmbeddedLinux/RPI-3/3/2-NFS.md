@@ -137,7 +137,12 @@ ip link set $1 up
 #### 5.2.2. Run QEMU with NFS
 
 ```bash
-sudo qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel ~/u-boot/u-boot -net tap,script=~/scripts/qemu-ifup -net nic -sd ~/SDs/nfs+initramfs.img
+sudo qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel ~/u-boot/u-boot -net tap,script=/home/hala/scripts/qemu-ifup -net nic -sd ~/SDs/nfs+initramfs.img
+```
+
+```diff
+- t script=~/scripts/qemu-ifup
++ t script=/home/hala/scripts/qemu-ifup
 ```
 
 #### 5.2.3. Set the IP address on the target machine
