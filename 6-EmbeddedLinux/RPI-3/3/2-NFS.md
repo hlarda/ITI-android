@@ -145,6 +145,16 @@ sudo qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel ~/u-boot/u-boot -
 + t script=/home/hala/scripts/qemu-ifup
 ```
 
+writting `~` in this place will cause an error and the error message is misleading and does not indicate the real problem.
+
+```console
+$ sudo qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel ~/u-boot/u-boot -net tap,script=~/scripts/qemu-ifup -net nic -sd ~/SDs/tftp+initramfs.img
+WARNING: Image format was not specified for '/home/hala/SDs/tftp+initramfs.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+qemu-system-arm: -net tap,script=~/scripts/qemu-ifup: network script ~/scripts/qemu-ifup failed with status 256
+```
+
 #### 5.2.3. Set the IP address on the target machine
 
 ```uboot
