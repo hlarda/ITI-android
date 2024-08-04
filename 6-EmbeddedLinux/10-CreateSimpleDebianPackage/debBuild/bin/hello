@@ -1,0 +1,4 @@
+#!/bin/bash
+. /etc/hello.conf
+
+echo "Hello $NAME"

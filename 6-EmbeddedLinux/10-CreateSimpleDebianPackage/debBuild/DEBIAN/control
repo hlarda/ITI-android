@@ -1,0 +1,9 @@
+Package: hello
+Version: 1.0
+Architecture: all
+Priority: optional
+Maintainer: Hala Reda Fawzi <hlarda63@gmail.com>
+Section: misc
+Description: Simple hello world program for Debian package creation
+ This package provides a simple hello world program that is used
+ for demonstrating Debian package creation and management.
