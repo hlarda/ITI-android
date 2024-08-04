@@ -4,6 +4,25 @@ A Debian package is a file containing the compiled code, resources, and metadata
 
 ## Table of Contents
 
+- [How to Create a Simple Debian Package](#how-to-create-a-simple-debian-package)
+  - [Table of Contents](#table-of-contents)
+  - [1.filels structure](#1filels-structure)
+    - [1.1. Application files](#11-application-files)
+    - [1.2. Control file](#12-control-file)
+  - [2. Building the Debian package](#2-building-the-debian-package)
+  - [3. Verifying the Debian package](#3-verifying-the-debian-package)
+    - [3.1. Check contents](#31-check-contents)
+    - [3.2. Linting](#32-linting)
+      - [Solve the lintian errors](#solve-the-lintian-errors)
+      - [Solve the lintian warnings](#solve-the-lintian-warnings)
+  - [Last Build with no errors or warnings](#last-build-with-no-errors-or-warnings)
+    - [1. **Install the Package**](#1-install-the-package)
+    - [2. **Verify Installation**](#2-verify-installation)
+    - [3. **Run the Installed Program**](#3-run-the-installed-program)
+    - [4. **Check Installed Files**](#4-check-installed-files)
+    - [5. **Uninstall the Package (if needed)**](#5-uninstall-the-package-if-needed)
+  - [Testing on my machine](#testing-on-my-machine)
+
 ## 1.filels structure
 
 ### 1.1. Application files

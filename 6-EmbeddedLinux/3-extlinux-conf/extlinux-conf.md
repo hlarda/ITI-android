@@ -41,6 +41,10 @@
     mmc0 is current device
     ```
 
+    **SOLUTION**
+
+    
+
 9. Run `bootflow scan` in the `uboot` shell.
 
     ```uboot

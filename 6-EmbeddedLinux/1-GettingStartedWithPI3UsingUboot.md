@@ -1,7 +1,5 @@
 # Getting started with Raspberry Pi 3
 
-## Table of Contents
-
 - The Raspberry Pi's boot process begins with the GPU, not the CPU.
 - Upon power-up, the GPU executes the BootROM code stored in ROM.
 - This BootROM is read-only memory that initializes the system's hardware. It configures the GPU and sets up the minimal environment necessary for the system to boot.
