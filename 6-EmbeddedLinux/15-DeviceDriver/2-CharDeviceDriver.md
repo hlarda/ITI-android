@@ -10,7 +10,6 @@
   - [Data structures for a character device](#data-structures-for-a-character-device)
   - [Implementation](#implementation)
   - [Console Work](#console-work)
-  - [Error](#error)
 
 ## Difference between character device driver and block device driver?
 
@@ -120,25 +119,19 @@ sudo mknod /dev/helloDev c 250 0
     lrwxrwxrwx  1 root root 0 Aug  6 22:31 charDevice -> ../../devices/virtual/charDeviceClass/charDevice
     ```
 
-## Error
+3. write in the device
 
-```console
-$ dmesg | tail -n 2
-[18064.143246] Device is allocated with Major: 511, Minor: 0
-[18064.143337] Device is created
-$ ls -al /dev/charDevice
-crw------- 1 root root 511, 0 Aug  6 23:35 /dev/charDevice
-$ cat /dev/charDevice
-cat: /dev/charDevice: Permission denied
-$ sudo chmod 777 /dev/charDevice
-$ cat /dev/charDevice
-cat: /dev/charDevice: No such device or address
-hala@lat:~/windows-b/ITI-android/6-EmbeddedLinux/15-DeviceDriver/charDevice
-$ ls -al /dev/charDevice 
-crwxrwxrwx 1 root root 511, 0 Aug  6 23:35 /dev/charDevice
-$ sudo chmod +x /dev/charDevice
-$ ls -al /dev/charDevice 
-crwxrwxrwx 1 root root 511, 0 Aug  6 23:35 /dev/charDevice
-$ cat /dev/charDevice
-cat: /dev/charDevice: No such device or address
-```
+    ```console
+    sudo chmod 777  /dev/charDevice
+    echo "m7md" >> /dev/charDevice
+    ```
+
+    ```console
+    $ dmesg | tail -n 7
+    [35711.136564] Device is allocated with Major: 511, Minor: 0
+    [35711.136706] Device is created
+    [35802.699113] charDeviceOpen
+    [35802.699124] charDeviceWrite
+    [35802.699129] charDeviceRelease
+    [35878.654914] Device is destroyed
+    ```
