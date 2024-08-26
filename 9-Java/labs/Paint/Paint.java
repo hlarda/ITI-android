@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 //import java.awt.Graphics2D;
 //import java.awt.Stroke;
 
-enum ShapeType{ LINE,   OVAL,   RECTANGLE,  FREEHAND,   ERASE }
+enum ShapeType{ LINE,   OVAL,   RECTANGLE,  FREEHAND }
 
 public class Paint extends Applet{
     private ArrayList<Shape> shapes = new ArrayList<>();
@@ -41,6 +41,7 @@ public class Paint extends Applet{
         Checkbox redChk         = new Checkbox("Red", colorGroup, true);
         Checkbox greenChk       = new Checkbox("Green", colorGroup, false);
         Checkbox blueChk        = new Checkbox("Blue", colorGroup, false);
+        Checkbox whiteChk        = new Checkbox("White", colorGroup, false);
 
         Label shapeLabel        = new Label("Shape:");
         CheckboxGroup shapeGroup= new CheckboxGroup();
@@ -48,13 +49,12 @@ public class Paint extends Applet{
         Checkbox ovalChk        = new Checkbox("Oval", shapeGroup, false);
         Checkbox rectChk        = new Checkbox("Rectangle", shapeGroup, false);
         Checkbox freehandChk    = new Checkbox("Freehand", shapeGroup, false);
-        Checkbox eraseChk       = new Checkbox("Erase", shapeGroup, false);
 
         Label styleLabel        = new Label("Style:");
+        Checkbox fillChk        = new Checkbox("Fill");
         //CheckboxGroup styleGroup= new CheckboxGroup();
         //Checkbox fillChk        = new Checkbox("Fill",styleGroup,false);
         //Checkbox dashChk      = new Checkbox("Dash",styleGroup,false);
-        Checkbox fillChk        = new Checkbox("Fill");
 
         redChk.addItemListener(new ItemListener(){
             public void itemStateChanged(ItemEvent e){
@@ -95,12 +95,6 @@ public class Paint extends Applet{
                 currentShape = ShapeType.FREEHAND;
             }
         });
-        eraseChk.addItemListener(new ItemListener(){
-            public void itemStateChanged(ItemEvent e){
-                tmpShape     = new Rectangle(true,Color.WHITE);
-                currentShape = ShapeType.ERASE;
-            }
-        });
        fillChk.addItemListener(new ItemListener(){
             public void itemStateChanged(ItemEvent e){
                 tmpShape.isFilled = isFilled = fillChk.getState();
@@ -134,6 +128,14 @@ public class Paint extends Applet{
                 repaint();
             }
         });
+        Button eraseBtn = new Button("Erase");
+        eraseBtn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                tmpColor = Color.WHITE;
+                tmpShape.color = tmpColor;
+                whiteChk.setState(true);
+            }
+        });
         colorLabel.setBackground(Color.GRAY);
         colorLabel.setForeground(Color.WHITE);
         add(colorLabel);    
@@ -148,7 +150,6 @@ public class Paint extends Applet{
         add(ovalChk);   
         add(rectChk);   
         add(freehandChk);   
-        add(eraseChk);
         
         styleLabel.setBackground(Color.GRAY);
         styleLabel.setForeground(Color.WHITE);
@@ -158,6 +159,7 @@ public class Paint extends Applet{
         
         add(undoBtn);   
         add(clearAllBtn);
+        add(eraseBtn);
 
         MouseActions mouseActions = new MouseActions();
         addMouseListener(mouseActions);
@@ -200,9 +202,6 @@ public class Paint extends Applet{
                         break;
                     case FREEHAND:
                         tmpShape = new Freehand(isFilled,tmpColor);
-                        break;
-                    case ERASE:
-                        tmpShape = new Rectangle(true,Color.WHITE);
                         break;
                     default:                        break;
                 }
