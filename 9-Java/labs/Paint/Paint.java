@@ -51,9 +51,10 @@ public class Paint extends Applet{
         Checkbox eraseChk       = new Checkbox("Erase", shapeGroup, false);
 
         Label styleLabel        = new Label("Style:");
-        CheckboxGroup styleGroup= new CheckboxGroup();
-        Checkbox fillChk      = new Checkbox("Fill",styleGroup,false);
+        //CheckboxGroup styleGroup= new CheckboxGroup();
+        //Checkbox fillChk        = new Checkbox("Fill",styleGroup,false);
         //Checkbox dashChk      = new Checkbox("Dash",styleGroup,false);
+        Checkbox fillChk        = new Checkbox("Fill");
 
         redChk.addItemListener(new ItemListener(){
             public void itemStateChanged(ItemEvent e){
