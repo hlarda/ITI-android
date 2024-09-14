@@ -15,3 +15,10 @@ TODO
 6-EmbeddedLinux/4-lab/pi3.md
 sdInitRanFs.img
 6-EmbeddedLinux/3-extlinux-conf/sd.img
+*/*/*/*/*/*/*.json
+*/*/*/*/*.class
+*/*/*/*/*/*.class
+9-Java/*/*/*.class
+9-Java/*/*/*.pdf
+10-QT/*
+11-androidStudio/lab/11-9/RotaionCounter*
