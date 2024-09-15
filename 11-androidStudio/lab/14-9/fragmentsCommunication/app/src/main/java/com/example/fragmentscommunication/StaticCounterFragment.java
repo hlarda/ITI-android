@@ -14,6 +14,8 @@ public class StaticCounterFragment extends Fragment {
     private int counter = 0;
     private Button counterBtn;
 
+    Communicator communicator;
+
     public StaticCounterFragment() {
         // Required empty public constructor
     }
@@ -32,14 +34,14 @@ public class StaticCounterFragment extends Fragment {
         if (savedInstanceState != null) {
             counter = savedInstanceState.getInt(COUNTER_KEY, 0);
         }
-
+        communicator = (Communicator) getActivity();
         counterBtn = view.findViewById(R.id.counterBtn);
 
         counterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 counter++;
-                ((MainActivity) getActivity()).updateCounterInDynamicFragment();
+                communicator.respond(counter);
             }
         });
     }

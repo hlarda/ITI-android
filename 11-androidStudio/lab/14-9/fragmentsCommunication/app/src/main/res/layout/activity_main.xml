@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
+        android:id="@+id/staticfra"
         android:name="com.example.fragmentscommunication.StaticCounterFragment"
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -31,13 +31,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView2"
+        android:id="@+id/dynamicfra"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView" />
+        app:layout_constraintTop_toBottomOf="@+id/staticfra" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

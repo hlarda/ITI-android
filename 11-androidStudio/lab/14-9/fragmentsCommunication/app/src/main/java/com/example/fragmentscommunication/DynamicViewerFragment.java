@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 public class DynamicViewerFragment extends Fragment {
 
+    private static final String COUNTER_KEY = "counter_key";
     private TextView counterTxt;
+    private int counter = 0;
 
     public DynamicViewerFragment() {
     }
@@ -26,9 +28,21 @@ public class DynamicViewerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         counterTxt = view.findViewById(R.id.counterTxt);
+
+        if (savedInstanceState != null) {
+            counter = savedInstanceState.getInt(COUNTER_KEY, 0);
+        }
+        counterTxt.setText(String.valueOf(counter));
     }
 
-    public void updateCounter(int counter) {
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(COUNTER_KEY, counter);
+    }
+
+    public void updateCounter(int newCounter) {
+        this.counter = newCounter;
         if (counterTxt != null) {
             counterTxt.setText(String.valueOf(counter));
         }
