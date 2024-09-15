@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">fragmentsCommunication</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="clickToCountTxt">Click to count up</string>
+    <string name="up">Up</string>
+    <string name="mainActivity">Main Activity</string>
+    <string name="clickCountLabel">Click count</string>
+</resources>
