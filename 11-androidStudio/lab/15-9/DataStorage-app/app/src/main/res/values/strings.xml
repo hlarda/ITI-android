@@ -9,4 +9,6 @@
     <string name="read">Read</string>
     <string name="shared">Shared Preference</string>
     <string name="Internal">Internal Storage</string>
+    <string name="Database" />
+    <string name="db">Database</string>
 </resources>

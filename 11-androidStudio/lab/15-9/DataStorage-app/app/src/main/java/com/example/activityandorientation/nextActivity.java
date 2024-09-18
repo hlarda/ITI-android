@@ -1,9 +1,8 @@
 package com.example.activityandorientation;
 
-import static com.example.activityandorientation.R.id.rSharedPrefBtn;
-
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,8 +27,9 @@ public class nextActivity extends AppCompatActivity {
     private static final String INTERNAL_FILE = "INTERNAL_FILE";
 
     Button backBtn;
-    Button rSharedPrefBtn, wSharedPrefBtn, rInternalStorage, wInternalStorage;
+    Button rSharedPrefBtn, wSharedPrefBtn, rInternalStorage, wInternalStorage, rDbBtn, wDbBtn;
     TextView phoneView, msgView;
+    DbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +47,16 @@ public class nextActivity extends AppCompatActivity {
         wSharedPrefBtn  = findViewById(R.id.wSharedPrefBtn);
         rInternalStorage= findViewById(R.id.rInternalStorage);
         wInternalStorage= findViewById(R.id.wInternalStorage);
+        rDbBtn          = findViewById(R.id.rDbBtn);
+        wDbBtn          = findViewById(R.id.wDbBtn);
 
         phoneView       = findViewById(R.id.phoneView);
         msgView         = findViewById(R.id.msgView);
 
-        String phone = getIntent().getStringExtra(MainActivity.PHONE);
-        String message = getIntent().getStringExtra(MainActivity.MESSAGE);
+        dbHelper = new DbHelper(nextActivity.this);
+
+        String phone    = getIntent().getStringExtra(MainActivity.PHONE);
+        String message  = getIntent().getStringExtra(MainActivity.MESSAGE);
 
         phoneView.setText(phone);
         msgView.setText(message);
@@ -118,7 +122,28 @@ public class nextActivity extends AppCompatActivity {
                 }
             }
         });
+        wDbBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbHelper.insertData(phone, message);
+                phoneView.setText("");
+            }
+        });
+        rDbBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Cursor cursor = dbHelper.getPhoneByMessage(message);
 
+                if (cursor != null && cursor.moveToFirst()) {
+                    phoneView.setText(cursor.getString(cursor.getColumnIndexOrThrow("phone")));
+                } else {
+                    Toast.makeText(nextActivity.this, "No phone found for this message", Toast.LENGTH_SHORT).show();
+                }
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+        });
 
     }
 }
