@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">imageLoaderAsync</string>
+    <string name="download">Download</string>
+</resources>
