@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">RetrofitJson</string>
+    <string name="title">Title</string>
+    <string name="price">Price\n</string>
+    <string name="pricee">Price</string>
+    <string name="brand">Brand</string>
+    <string name="desc">Description</string>
+    <string name="rating">Rating</string>
+    <string name="product">Product</string>
 </resources>
