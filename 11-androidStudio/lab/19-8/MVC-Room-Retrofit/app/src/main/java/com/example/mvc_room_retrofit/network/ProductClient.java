@@ -1,5 +1,7 @@
 package com.example.mvc_room_retrofit.network;
 
+import com.example.mvc_room_retrofit.model.Root;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

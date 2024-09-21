@@ -1,8 +1,14 @@
-package com.example.mvc_room_retrofit.network;
+package com.example.mvc_room_retrofit.model;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.ArrayList;
-import java.util.List;
+
+@Entity (tableName = "products_table")
 public class Product{
+    @PrimaryKey
     public int id;
+
     public String title;
     public String description;
     public String category;
@@ -10,18 +16,13 @@ public class Product{
     public double discountPercentage;
     public double rating;
     public int stock;
-    public ArrayList<String> tags;
     public String brand;
     public String sku;
     public int weight;
-    public Dimensions dimensions;
     public String warrantyInformation;
     public String shippingInformation;
     public String availabilityStatus;
-    public ArrayList<Review> reviews;
     public String returnPolicy;
     public int minimumOrderQuantity;
-    public Meta meta;
-    public ArrayList<String> images;
     public String thumbnail;
 }
