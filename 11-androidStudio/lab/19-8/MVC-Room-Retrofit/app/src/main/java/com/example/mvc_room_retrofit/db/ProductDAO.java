@@ -1,5 +1,6 @@
 package com.example.mvc_room_retrofit.db;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Index;
@@ -14,7 +15,7 @@ import java.util.List;
 @Dao
 public interface ProductDAO {
     @Query("SELECT * FROM products_table")
-    List<Product> getProducts();
+    LiveData<List<Product>> getProducts();
 
     @Insert (onConflict = OnConflictStrategy.IGNORE)
     void insert(Product movie);

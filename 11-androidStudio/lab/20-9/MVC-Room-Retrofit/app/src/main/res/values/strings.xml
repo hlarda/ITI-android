@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MVC-Room-Retrofit</string>
+    <string name="all">All Products</string>
+    <string name="fav">Open Cart</string>
+    <string name="exit">Exit</string>
+    <string name="title">Shop NOW</string>
+    <string name="price">Price</string>
+    <string name="brand">Brand</string>
+    <string name="desc">Description</string>
+    <string name="rating">Rating</string>
+    <string name="product">Product</string>
+    <string name="addToCart">Add To Cart</string>
+    <string name="ShoppingCart">Your shopping cart</string>
+    <string name="remove">Remove</string>
+</resources>

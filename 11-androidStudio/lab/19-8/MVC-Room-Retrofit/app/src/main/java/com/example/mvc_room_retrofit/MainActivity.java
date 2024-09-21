@@ -2,12 +2,17 @@ package com.example.mvc_room_retrofit;
 
 import static android.content.ContentValues.TAG;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mvc_room_retrofit.allProducts.controller.AllActivity;
+import com.example.mvc_room_retrofit.cartProducts.controller.CartActivity;
 import com.example.mvc_room_retrofit.db.ProductDAO;
 import com.example.mvc_room_retrofit.db.ProductDatabase;
 import com.example.mvc_room_retrofit.network.NetworkCallback;
@@ -16,44 +21,28 @@ import com.example.mvc_room_retrofit.network.ProductClient;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NetworkCallback {
-    ProductDatabase productDatabase;
-    ProductDAO productDAO;
+public class MainActivity extends AppCompatActivity{
+    Button allBtn, cartBtn, exitBtn;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        ProductClient productClient = ProductClient.getInstance();
-        productClient.getProducts(this);
+        allBtn = findViewById(R.id.allBtn);
+        cartBtn = findViewById(R.id.cartBtn);
+        exitBtn = findViewById(R.id.exitBtn);
 
-        productDatabase = ProductDatabase.getInstance(this);
-        productDAO      = productDatabase.getProductDAO();
-    }
-
-    @Override
-    public void onSuccess(List<Product> response) {
-        Log.i(TAG, "onSuccess: ");
-        for(Product product: response){
-            Log.i(TAG, "ID: " + product.id);
-        }
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                productDAO.insert(response.get(0));
-                Log.i(TAG, "After Insertion:");
-                for(Product product: productDAO.getProducts()){
-                    Log.i(TAG, "ID: " + product.id);
-                }
-            }
-        }).start();
-
-    }
-
-    @Override
-    public void onFailure(String error) {
-        Log.i(TAG, "onFailure: " + error);
+        allBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, AllActivity.class);
+            startActivity(intent);
+        });
+        cartBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, CartActivity.class);
+            startActivity(intent);
+        });
+        exitBtn.setOnClickListener(view -> moveTaskToBack(true));
     }
 }
