@@ -49,5 +49,6 @@ dependencies {
     // Room
     implementation (libs.room.runtime)
     annotationProcessor (libs.room.compiler)
-
+    // SnackBar
+    implementation (libs.material.v140)
 }
